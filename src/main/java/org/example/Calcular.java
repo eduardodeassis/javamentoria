@@ -1,5 +1,7 @@
 package org.example;
 
+import java.util.ArrayList;
+
 public class Calcular {
 
     /**
@@ -17,7 +19,15 @@ public class Calcular {
      * </ul>
      */
     public static void calcularMedia() {
-        
+        ArrayList<org.example.Aluno> lstAlunos = new ArrayList<>();
+        Aluno tmpAluno = new Aluno();
+        tmpAluno.nome = "Eduardo";
+        tmpAluno.notas.add(10.0f);
+        tmpAluno.notas.add(5.5f);
+        tmpAluno.notas.add(6.9f);
+        tmpAluno.notas.add(7.6f);
+        lstAlunos.add(tmpAluno);
+        System.out.println(lstAlunos.get(0).media());
     }
 
     public static void main(String[] args) {
