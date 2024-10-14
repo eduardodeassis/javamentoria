@@ -1,6 +1,6 @@
 package org.example;
 
-import java.util.ArrayList;
+import java.util.Scanner;
 
 public class Calcular {
 
@@ -19,15 +19,40 @@ public class Calcular {
      * </ul>
      */
     public static void calcularMedia() {
-        ArrayList<org.example.Aluno> lstAlunos = new ArrayList<>();
-        Aluno tmpAluno = new Aluno();
-        tmpAluno.nome = "Eduardo";
-        tmpAluno.notas.add(10.0f);
-        tmpAluno.notas.add(5.5f);
-        tmpAluno.notas.add(6.9f);
-        tmpAluno.notas.add(7.6f);
-        lstAlunos.add(tmpAluno);
-        System.out.println(lstAlunos.get(0).media());
+        Scanner scanner = new Scanner(System.in);
+        float nota;
+        float media;
+
+        while (true) {
+            Aluno tmpAluno = new Aluno();
+
+            System.out.println("Informe o nome do aluno (digite 'sair' para encerrar a aplicação):");
+            tmpAluno.nome = scanner.next();
+
+            if (tmpAluno.nome.toLowerCase().equals("sair")) {
+                System.out.println("Aplicação encerrada, obrigado por utilizar ;)");
+                break;
+            }
+
+            System.out.println("Informe as notas do aluno (digite uma nota menor que zero para encerrar os lançamentos):");
+            while (true) {
+                nota = scanner.nextFloat();
+                if (nota < 0) {
+                    break;
+                } else {
+                    tmpAluno.notas.add(nota);
+                }
+            }
+
+            media = tmpAluno.media();
+            System.out.printf("A média do aluno é %.2f%n", media);
+
+            if (media >= 6) {
+                System.out.println("O aluno foi aprovado.");
+            } else {
+                System.out.println("O aluno foi reprovado.");
+            }
+        }
     }
 
     public static void main(String[] args) {
