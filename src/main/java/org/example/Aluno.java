@@ -9,15 +9,26 @@ public class Aluno {
 
     public float total() {
         float tmp = 0f;
-        for (Float value : notas) {
-            tmp += value;
+
+        if (notas.size() > 0) {
+            for (Float value : notas) {
+                tmp += value;
+            }
+            return tmp;
+        }else{
+            return 0;
         }
-        return tmp;
     }
 
     public float media() {
-        float tmp = total();
-        return tmp / notas.size();
+        if (notas.size() > 0) {
+            float tmp = total();
+            return tmp / notas.size();
+        } else {
+            return 0;
+        }
     }
+
+
 
 }
