@@ -1,8 +1,7 @@
 package org.example;
 
-import java.util.HashMap;
-import java.util.Map;
 import java.util.Scanner;
+import java.util.regex.Pattern;
 
 public class Calcular {
 
@@ -27,17 +26,32 @@ public class Calcular {
         float media;
         int opcaoAluno = 0;
         int opcaoNota = 0;
-
+        String entrada;
+        Pattern patInt = Pattern.compile("^-?\\d+$");
+        Pattern patFloat = Pattern.compile("^-?\\d+(\\.\\d+)?$");
 
         while (opcaoAluno < 2) {
             opcaoAluno = 0;
             opcaoNota = 0;
-            System.out.println("-- Menu do sistema escolar --");
-            System.out.println("-- (1) Novo aluno          --");
-            System.out.println("-- (2) Sair                --");
 
-            // regex
-            opcaoAluno = scanner.nextInt();   // next
+            entrada = "";
+            while (entrada == "") {
+                System.out.println("-- Menu do sistema escolar --");
+                System.out.println("-- (1) Novo aluno          --");
+                System.out.println("-- (2) Sair                --");
+                System.out.print("Informe a opção: ");
+                // regex
+                entrada = scanner.nextLine();   // next
+                if (patInt.matcher(entrada).matches()) {
+                    opcaoAluno = Integer.parseInt(entrada);
+                } else {
+                    System.out.println("Entrada inválida! Tente novamente.");
+                    pausa(1000);
+                    entrada = "";
+                }
+            }
+
+
             System.out.println(" ");
 
             if (opcaoAluno == 1) {
