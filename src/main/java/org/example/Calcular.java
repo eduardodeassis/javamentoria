@@ -62,18 +62,41 @@ public class Calcular {
                 System.out.println(" ");*/
 
                 while (opcaoNota < 3) {
-                    System.out.println("-- Menu do sistema escolar --");
-                    System.out.println("-- (1) Adicionar notas     --");
-                    System.out.println("-- (2) Mostrar média       --");
-                    System.out.println("-- (3) Sair                --");
-                    System.out.print("Informe a opção: ");
-                    opcaoNota = scanner.nextInt();
+                    entrada = "";
+                    while (entrada == "") {
+                        System.out.println("-- Menu do sistema escolar --");
+                        System.out.println("-- (1) Adicionar notas     --");
+                        System.out.println("-- (2) Mostrar média       --");
+                        System.out.println("-- (3) Sair                --");
+                        System.out.print("Informe a opção: ");
+
+                        entrada = scanner.nextLine();   // next
+                        if (patInt.matcher(entrada).matches()) {
+                            opcaoNota = Integer.parseInt(entrada);
+                        } else {
+                            System.out.println("Entrada inválida! Tente novamente.");
+                            pausa(1000);
+                            entrada = "";
+                        }
+                    }
                     System.out.println(" ");
 
                     switch (opcaoNota) {
                         case 1:
-                            System.out.print("Informe a nota: ");
-                            nota = scanner.nextFloat();
+                            entrada = "";
+                            nota = 0;
+                            while (entrada == "") {
+                                System.out.print("Informe a nota: ");
+
+                                entrada = scanner.nextLine();   // next
+                                if (patFloat.matcher(entrada).matches()) {
+                                    nota = Float.parseFloat(entrada);
+                                } else {
+                                    System.out.println("Nota inválida! Tente novamente.");
+                                    pausa(1000);
+                                    entrada = "";
+                                }
+                            }
                             tmpAluno.notas.add(nota);
                             break;
                         case 2:
